@@ -23,6 +23,3 @@ yarn-error.log*
 
 #eslint
 .eslintrc.js
-
-#graphics gale
-*.gal
