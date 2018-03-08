@@ -5,9 +5,15 @@ class Salida extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      cambio: null
+      cambio: null,
+      ganador: null
     };
   }
+
+  componentWillReceiveProps () {
+    this.props.buscaGanador((d) => (this.setState({ ganador: d })));
+  }
+
   render () {
     let lista;
     let cuentas;
@@ -18,7 +24,7 @@ class Salida extends Component {
         i++;
         return (
           <div key={i} className="col-sm-4">
-            {i}. {d.mensaje}
+            Pelea {i}: {d.mensaje}
           </div>
         );
       });
@@ -29,8 +35,13 @@ class Salida extends Component {
       cuentas = "@" + this.props.cuentas[0] + " vs @" + this.props.cuentas[1];
     }
 
-    if (this.props.ganador !== null) {
-      ganador = "el ganador es: " + this.props.ganador;
+    if (this.state.ganador !== null) {
+      ganador = (
+        <div>
+          <h3>El ganador es:</h3>
+          <h1>{this.state.ganador.cuenta}</h1>
+        </div>
+      );
     }
     return (
       <div className="down">
@@ -40,7 +51,7 @@ class Salida extends Component {
           <div className="centro">
             <p>{cuentas}</p>
             <br/>
-            <p>{ganador}</p>
+            <div>{ganador}</div>
           </div>
         </div>
         <hr />

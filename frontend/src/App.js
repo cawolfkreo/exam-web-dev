@@ -9,13 +9,15 @@ class App extends Component {
     this.state = {
       cuenta1: null,
       cuenta2: null,
-      ganador: null,
-      lista: []
+      lista: [],
+      error: false
     };
     this.entradaFormulario = this.entradaFormulario.bind(this);
     this.obtenerRecursos = this.obtenerRecursos.bind(this);
     this.insertarRecurso = this.insertarRecurso.bind(this);
     this.darFotosUsuario = this.darFotosUsuario.bind(this);
+    this.comparador = this.comparador.bind(this);
+    this.encontrarGanador = this.encontrarGanador.bind(this);
   }
 
   componentWillMount () {
@@ -28,17 +30,20 @@ class App extends Component {
         return res.json();
       })
       .then((recursos) => {
-        console.log("recursos:" + JSON.stringify(recursos));
         this.setState({ lista: recursos });
       })
       .catch((err) => console.log(err));
   }
 
   entradaFormulario (c1, c2) {
-    this.setState({ cuenta1: c1, cuenta2: c2 });
+    if (!(c1.includes("@") || c2.includes("@"))) {
+      this.setState({ cuenta1: c1, cuenta2: c2, error: false });
+    } else {
+      this.setState({ error: true });
+    }
   }
 
-  insertarRecurso (recurso) {
+  insertarRecurso (recurso, callback) {
     fetch("api/recurso",
       { method: "POST", body: JSON.stringify(recurso),
         headers: { "Content-Type": "application/json" } })
@@ -46,57 +51,87 @@ class App extends Component {
         return res.json();
       })
       .then((recurso) => {
-        this.obtenerRecursos();
+        this.obtenerRecursos(recurso, callback);
       })
       .catch((err) => console.log(err));
   }
 
-  obtenerFotosInsta () {
-    this.instaInfoUsuario(this.state.cuenta1);
-    this.instaInfoUsuario(this.state.cuenta2);
+  comparador (c1, c2) {
+    if (c2 !== null) ;
+    if (c1.total >= c2.total) {
+      return c1;
+    } else {
+      return c2;
+    }
   }
 
-  instaInfoUsuario (usuario) {
+  instaInfoUsuario (usuario, callback) {
     fetch("https://www.instagram.com/" + usuario + "/?__a=1")
       .then((res) => {
-        return res.json;
+        return res.json();
       })
       .then((info) => {
-        this.darFotosUsuario(usuario, info);
+        this.darFotosUsuario(usuario, info, callback);
       })
       .catch((e) => console.log("se encontro el error:\n" + e.message));
   }
 
-  darFotosUsuario (usuario, info) {
+  darFotosUsuario (usuario, info, callback) {
     const calculo = { cuenta: usuario, mas: null, total: 0 };
     let conteo = 0;
-    info.media.nodes.map((d) => {
+    info.user.media.nodes.forEach((d) => {
       let cuenta = d.likes.count;
       calculo.total += cuenta;
       if (cuenta > conteo) {
         calculo.mas = d.thumbnail_resources[1].src;
       }
     });
-    if (this.state.ganador === null) {
-      this.setState({ ganador: calculo });
-    } else if (this.state.ganador.mas < calculo.mas) {
-      this.setState({ ganador: calculo });
+    callback(calculo);
+  }
+
+  encontrarGanador (callback) {
+    if (this.state.cuenta1 !== null && this.state.cuenta2 !== null) {
+      this.instaInfoUsuario(this.state.cuenta1, (res1) => {
+        this.instaInfoUsuario(this.state.cuenta2, (res2) => {
+          if (res1.total >= res2.total) {
+            callback(res1);
+          } else {
+            callback(res2);
+          }
+        });
+      });
     }
   }
 
   render () {
+    let error = null;
+
+    if (this.state.error) {
+      error = (
+        <div className="col-sm-6 left medio ">
+          <p className="rojo"><em>¡¡ Ingresa los nombres de usuario sin "@" !!</em></p>
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome My Site</h1>
+          <h1 className="App-title">¡¡Insta Fight!!</h1>
         </header>
         <div className="container">
-          <Formulario input={this.insertarRecurso}
-            entradaCuentas={this.entradaFormulario}/>
+          <div className="row">
+            <Formulario className="col-sm-3"
+              input={this.insertarRecurso}
+              entradaCuentas={this.entradaFormulario}/>
+            {error}
+          </div>
           <div>
             <hr />
-            <Salida cuentas={[this.state.cuenta1, this.state.cuenta2]} lista={this.state.lista}
-              ganador={this.state.ganador} />
+            <Salida
+              cuentas={[this.state.cuenta1, this.state.cuenta2]}
+              lista={this.state.lista}
+              buscaGanador={this.encontrarGanador} />
           </div>
         </div>
       </div>

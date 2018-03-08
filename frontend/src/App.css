@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: rgb(88, 14, 117);
   height: 70px;
   padding: 20px;
   color: white;
@@ -23,4 +23,14 @@ div.left {
 
 div.centro {
   margin: auto;
+}
+
+div.medio {
+  margin-top: 19%;
+  margin-left: -40%;
+}
+
+p.rojo {
+  color: red;
+  font-size: 3vh;
 }

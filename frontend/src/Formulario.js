@@ -14,11 +14,13 @@ class Formulario extends Component {
     this.envioClick = this.envioClick.bind(this);
     this.cambio2 = this.cambio2.bind(this);
   }
+
   envioEnter (e) {
     if (e.key === "Enter") {
       this.envioClick();
     }
   }
+
   cambio (e) {
     this.setState({ cuenta1: e.target.value });
   }
@@ -28,24 +30,32 @@ class Formulario extends Component {
   }
 
   envioClick () {
-    this.props.entradaCuentas(this.state.cuenta1, this.state.cuenta2);
-    const m = "@" + this.state.cuenta1 + " vs " + "@" + this.state.cuenta2;
-    console.log("se envia: " + m);
-    this.props.input({ mensaje: m });
+    if (this.state.cuenta1 !== "" &&
+    this.state.cuenta1 !== null &&
+    this.state.cuenta2 !== "" &&
+    this.state.cuenta2 !== null) {
+      this.props.entradaCuentas(this.state.cuenta1, this.state.cuenta2);
+      const m = "@" + this.state.cuenta1 + " vs @" + this.state.cuenta2;
+      console.log("se envia: " + m);
+      this.props.input({ mensaje: m });
+    }
   }
 
   render () {
     return (
-      <div className="down left">
+      <div className="down left col-sm-8">
         <h2>Buscar ...</h2>
         <br />
-        <p>Primera Cuenta: <strong>@</strong></p><input id="inputBox" type="text"
+        <p>Primera Cuenta: <strong>@ </strong><input id="inputBox" type="text"
           placeholder="Ingrese la primera cuenta"
-          onChange={this.cambio}/>
-        <p>Segunda Cuenta: <strong>@</strong></p><input id="inputBox" type="text"
+          onChange={this.cambio}
+          onKeyUp ={this.envioEnter}/>
+        </p>
+        <p>Segunda Cuenta: <strong>@ </strong><input id="inputBox" type="text"
           placeholder="Ingrese la segunda cuenta"
           onChange={this.cambio2}
           onKeyUp ={this.envioEnter} />
+        </p>
         <button id="boton" onClick={this.envioClick}>Send</button>
       </div>
     );
