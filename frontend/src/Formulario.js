@@ -14,7 +14,7 @@ class Formulario extends Component {
   }
   envioEnter (e) {
     if (e.key === "Enter") {
-      this.props.input(this.state.algo);
+      this.props.input({ mensaje: this.state.algo });
     }
   }
   cambio (e) {
@@ -22,7 +22,7 @@ class Formulario extends Component {
   }
 
   envioClick () {
-    this.props.input(this.state.algo);
+    this.props.input({ mensaje: this.state.algo });
   }
 
   render () {
@@ -35,7 +35,6 @@ class Formulario extends Component {
           onChange={this.cambio}
           onKeyUp ={this.envioEnter} />
         <button id="boton" onClick={this.envioClick}>Send</button>
-        <div>{this.state.algo}</div>
       </div>
     );
   }

@@ -26,14 +26,14 @@ function addRecurso (recurso, callback) {
 
 function insertRecurso (recurso, db, callback) {
   const collection = db.collection(collect);
-  collection.insert(recurso).then(() =>
-    callback("insertado con exito")
-  );
+  collection.insert(recurso)
+    .then(() => callback(recurso))
+    .catch((err)=> console.log("se encontro el error:\n"+err.message));
 }
 
 
-function findrecurso (db, callback) {
-  const collection = db.collection("clientes_restaurantes");
+function findrecursos (db, callback) {
+  const collection = db.collection(collect);
   collection.find({}).toArray((err, docs) => {
     if(err) {
       console.log("________________________________");
@@ -53,8 +53,8 @@ function getRecursos(callback) {
       console.log(err.message);
     }else{
       console.log("Connected");
-      const db = client.db(dbname); //se pide la collecion de los usuarios
-      findrecurso(db, callback); //se busca al usuario en la base de datos
+      const db = client.db(dbname); 
+      findrecursos(db, callback); 
     }
     client.close(); //se cierra collecion
   });
@@ -63,12 +63,12 @@ function getRecursos(callback) {
 
 /* backend API */
 router.post("/recurso", function (req, res) {
-  console.log("se va a agregar: "+req.body);
+  console.log("se va a agregar: "+JSON.stringify(req.body.str));
   addRecurso(req.body, (mensaje) => res.send(mensaje));
 });
 
 //devuelve todos los recursos en BD
-router.get("/recurso", (req, res) => {
+router.get("/recursos", (req, res) => {
   getRecursos((recurso) => res.send(recurso));
 });
 
