@@ -3,14 +3,22 @@
 }
 
 .App-header {
-  background-color: rgb(88, 14, 117);
-  height: 70px;
+  background: #d6249f;
+  background: radial-gradient(to bottom right, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  height: 130px;
   padding: 20px;
   color: white;
+  font-style: italic;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.App-title {
+  font-size: 7vh;
+  -webkit-text-stroke: 2px black;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 div.down {

@@ -24,22 +24,26 @@ class Salida extends Component {
         i++;
         return (
           <div key={i} className="col-sm-4">
-            Pelea {i}: {d.mensaje}
+            <strong>Pelea {i}:</strong>  {d.mensaje}
           </div>
         );
       });
     } else {
-      lista = "nada";
+      lista = "Aun no llegan registros.";
     }
     if (this.props.cuentas[1] !== null && this.props.cuentas[0] !== null) {
       cuentas = "@" + this.props.cuentas[0] + " vs @" + this.props.cuentas[1];
     }
 
     if (this.state.ganador !== null) {
+      const url = "https://www.instagram.com/" + this.state.ganador.cuenta;
       ganador = (
         <div>
           <h3>El ganador es:</h3>
-          <h1>{this.state.ganador.cuenta}</h1>
+          <h1>@{this.state.ganador.cuenta} <a href={url}><button className="btn btn-info">Ver perfil</button></a></h1>
+          <br/>
+          <h3>La imagen encontrada del ganador con más likes:</h3>
+          <img src={this.state.ganador.mas} className="rounded" alt="the winner" />
         </div>
       );
     }
@@ -49,7 +53,7 @@ class Salida extends Component {
         <br />
         <div className="row">
           <div className="centro">
-            <p>{cuentas}</p>
+            <h4>{cuentas}</h4>
             <br/>
             <div>{ganador}</div>
           </div>

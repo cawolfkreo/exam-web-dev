@@ -44,7 +44,7 @@ class Formulario extends Component {
   render () {
     return (
       <div className="down left col-sm-8">
-        <h2>Buscar ...</h2>
+        <h2>Ingresa las dos cuentas:</h2>
         <br />
         <p>Primera Cuenta: <strong>@ </strong><input id="inputBox" type="text"
           placeholder="Ingrese la primera cuenta"
@@ -56,7 +56,7 @@ class Formulario extends Component {
           onChange={this.cambio2}
           onKeyUp ={this.envioEnter} />
         </p>
-        <button id="boton" onClick={this.envioClick}>Send</button>
+        <button className="btn btn-primary" id="boton" onClick={this.envioClick}>Enviar</button>
       </div>
     );
   }
