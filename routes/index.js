@@ -73,6 +73,6 @@ router.get("/recursos", (req, res) => {
 });
 
 
-/* external API */
+/* external API Instagram */
 
 module.exports = router;

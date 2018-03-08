@@ -20,3 +20,7 @@ div.down {
 div.left {
   text-align: left;
 }
+
+div.centro {
+  margin: auto;
+}
