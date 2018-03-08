@@ -1,9 +1,9 @@
 # Insta Fight
 ## Description
-This is a web application to compare two accounts on instagram in this way: You give the two accounts and the app will take the last uploads from both and respond with the account with the most likes.
+This is a web application to compare two accounts on instagram in this way: You give the two accounts and the app will take the last picture uploads from both and respond with the account with the most likes. **you also get** the picture with most likes on the winner account based on the last picture uploads it fetch. **Lastly**, there is also a button that takes you to the profile of the winner in case you want to follow the account :tada:
 
 ## Motivation
-This is a project for a [web development class](http://johnguerra.co/classes/webDevelopment_spring_2018/) in [Uniandes](https://www.uniandes.edu.co). The objective is to make a quick project using node, MongoDB and ReactJS.
+This is a project for a [web development class](http://johnguerra.co/classes/webDevelopment_spring_2018/) in [Uniandes](https://www.uniandes.edu.co). The objective is to make a quick project using **node, MongoDB, ReactJS and I also used Bootstrap**.
 
 ## Getting Started
 For this proyect to run you will need a couple of things first. First of all, a package manager. I recommend [npm](https://www.npmjs.com/) for this project.
@@ -25,6 +25,12 @@ The veriables you need to add are:
 * `COLLECT` : The name of the collection inside the database you want to use for this project. Try to have this collection empty before deploying as well.
 
 ## Deployment
+
+### See an Already deployed demo
+
+If you don't feel like deploying this project or preparing everythin listed on the *getting started* section, there is a deployed version of this project [here.](https://insta-fight.herokuapp.com/)
+
+### Deploy Yourself
 Once you have everything ready open the terminal on the root folder where this project is downloaded in your pc and then enter on the `frontend` folder and run:
 * ```npm install```
 * ```npm start build```

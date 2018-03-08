@@ -109,7 +109,8 @@ class App extends Component {
     if (this.state.error) {
       error = (
         <div className="col-sm-6 left medio ">
-          <p className="rojo"><em>¡¡ Ingresa los nombres de usuario sin "@" !!</em></p>
+          <p className="rojo"><em>Por favor, recuerda no ingresar usuarios de cuentas privadas, el carácter "@"
+             y asegurate de que la cuenta que agregaste es la correcta y que existe</em></p>
         </div>
       );
     }

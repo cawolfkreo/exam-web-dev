@@ -1,6 +1,6 @@
 {
   "name": "examen",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
@@ -16,5 +16,19 @@
     "mongodb": "^3.0.4",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
-  }
+  },
+  "engines": {
+    "node": "8.9.4"
+  },
+  "description": "compares the number of likes between to instagram accounts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cawolfkreo/instaFight.git"
+  },
+  "author": "Camilo Zambrano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cawolfkreo/instaFight/issues"
+  },
+  "homepage": "https://github.com/cawolfkreo/instaFight#readme"
 }

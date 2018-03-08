@@ -40,7 +40,11 @@ class Salida extends Component {
       ganador = (
         <div>
           <h3>El ganador es:</h3>
-          <h1>@{this.state.ganador.cuenta} <a href={url}><button className="btn btn-info">Ver perfil</button></a></h1>
+          <h1>@{this.state.ganador.cuenta}
+            <a href={url} target="_blank">
+              <button className="btn btn-info">Ver perfil</button>
+            </a>
+          </h1>
           <br/>
           <h3>La imagen encontrada del ganador con más likes:</h3>
           <img src={this.state.ganador.mas} className="rounded" alt="the winner" />
