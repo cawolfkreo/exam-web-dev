@@ -63,7 +63,7 @@ function getRecursos(callback) {
 
 /* backend API */
 router.post("/recurso", function (req, res) {
-  console.log("se va a agregar: "+JSON.stringify(req.body.str));
+  console.log("se va a agregar: "+JSON.stringify(req.body.mensaje));
   addRecurso(req.body, (mensaje) => res.send(mensaje));
 });
 

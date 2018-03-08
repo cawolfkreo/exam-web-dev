@@ -10,7 +10,8 @@ class App extends Component {
       cuenta1: null,
       cuenta2: null,
       lista: [],
-      error: false
+      error: false,
+      cambio: false
     };
     this.entradaFormulario = this.entradaFormulario.bind(this);
     this.obtenerRecursos = this.obtenerRecursos.bind(this);
@@ -36,7 +37,7 @@ class App extends Component {
 
   entradaFormulario (c1, c2) {
     if (!(c1.includes("@") || c2.includes("@"))) {
-      this.setState({ cuenta1: c1, cuenta2: c2, error: false });
+      this.setState({ cuenta1: c1, cuenta2: c2, error: false, cambio: true });
     } else {
       this.setState({ error: true, cuenta1: null, cuenta2: null });
     }
@@ -64,7 +65,7 @@ class App extends Component {
         this.darFotosUsuario(usuario, info, callback);
       })
       .catch((e) => {
-        this.setState({ error: true, cuenta1: null, cuenta2: null });
+        this.setState({ error: true, cuenta1: null, cuenta2: null, cambio: false });
         console.log("se encontro el error:\n" + e.message);
       });
   }
@@ -87,7 +88,8 @@ class App extends Component {
   }
 
   encontrarGanador (callback) {
-    if (this.state.cuenta1 !== null && this.state.cuenta2 !== null) {
+    if (this.state.cuenta1 !== null && this.state.cuenta2 !== null &&
+      this.state.cambio) {
       this.instaInfoUsuario(this.state.cuenta1, (res1) => {
         this.instaInfoUsuario(this.state.cuenta2, (res2) => {
           const recurso = "@" + this.state.cuenta1 + " vs @" + this.state.cuenta2;
@@ -96,7 +98,8 @@ class App extends Component {
           } else {
             callback(res2);
           }
-          this.insertarRecurso(recurso);
+          this.insertarRecurso({ mensaje: recurso });
+          this.setState({ cambio: false });
         });
       });
     }
