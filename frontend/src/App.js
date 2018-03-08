@@ -74,12 +74,12 @@ class App extends Component {
       let cuenta = d.likes.count;
       calculo.total += cuenta;
       if (cuenta > conteo) {
-        calculo.mas = d.thumbnail_resources[1].src;x
+        calculo.mas = d.thumbnail_resources[1].src;
       }
     });
     if (this.state.ganador === null) {
       this.setState({ ganador: calculo });
-    }else if(this.state.ganador.mas < calculo.mas) {
+    } else if (this.state.ganador.mas < calculo.mas) {
       this.setState({ ganador: calculo });
     }
   }
