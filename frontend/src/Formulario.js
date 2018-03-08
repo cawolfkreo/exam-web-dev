@@ -35,9 +35,6 @@ class Formulario extends Component {
     this.state.cuenta2 !== "" &&
     this.state.cuenta2 !== null) {
       this.props.entradaCuentas(this.state.cuenta1, this.state.cuenta2);
-      const m = "@" + this.state.cuenta1 + " vs @" + this.state.cuenta2;
-      console.log("se envia: " + m);
-      this.props.input({ mensaje: m });
     }
   }
 

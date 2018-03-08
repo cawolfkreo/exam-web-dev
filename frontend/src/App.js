@@ -90,11 +90,13 @@ class App extends Component {
     if (this.state.cuenta1 !== null && this.state.cuenta2 !== null) {
       this.instaInfoUsuario(this.state.cuenta1, (res1) => {
         this.instaInfoUsuario(this.state.cuenta2, (res2) => {
+          const recurso = "@" + this.state.cuenta1 + " vs @" + this.state.cuenta2;
           if (res1.total >= res2.total) {
             callback(res1);
           } else {
             callback(res2);
           }
+          this.insertarRecurso(recurso);
         });
       });
     }
@@ -105,7 +107,7 @@ class App extends Component {
 
     if (this.state.error) {
       error = (
-        <div className="col-sm-6 left medio ">
+        <div className="col-sm-12">
           <p className="rojo"><em>Por favor, recuerda no ingresar usuarios de cuentas privadas, el carácter "@"
              y asegurate de que la cuenta que agregaste es la correcta y que existe</em></p>
         </div>
@@ -120,7 +122,6 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <Formulario className="col-sm-3"
-              input={this.insertarRecurso}
               entradaCuentas={this.entradaFormulario}/>
             {error}
           </div>
