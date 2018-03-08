@@ -16,7 +16,6 @@ class App extends Component {
     this.obtenerRecursos = this.obtenerRecursos.bind(this);
     this.insertarRecurso = this.insertarRecurso.bind(this);
     this.darFotosUsuario = this.darFotosUsuario.bind(this);
-    this.comparador = this.comparador.bind(this);
     this.encontrarGanador = this.encontrarGanador.bind(this);
   }
 
@@ -39,7 +38,7 @@ class App extends Component {
     if (!(c1.includes("@") || c2.includes("@"))) {
       this.setState({ cuenta1: c1, cuenta2: c2, error: false });
     } else {
-      this.setState({ error: true });
+      this.setState({ error: true, cuenta1: null, cuenta2: null });
     }
   }
 
@@ -56,15 +55,6 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
 
-  comparador (c1, c2) {
-    if (c2 !== null) ;
-    if (c1.total >= c2.total) {
-      return c1;
-    } else {
-      return c2;
-    }
-  }
-
   instaInfoUsuario (usuario, callback) {
     fetch("https://www.instagram.com/" + usuario + "/?__a=1")
       .then((res) => {
@@ -73,20 +63,27 @@ class App extends Component {
       .then((info) => {
         this.darFotosUsuario(usuario, info, callback);
       })
-      .catch((e) => console.log("se encontro el error:\n" + e.message));
+      .catch((e) => {
+        this.setState({ error: true, cuenta1: null, cuenta2: null });
+        console.log("se encontro el error:\n" + e.message);
+      });
   }
 
   darFotosUsuario (usuario, info, callback) {
-    const calculo = { cuenta: usuario, mas: null, total: 0 };
-    let conteo = 0;
-    info.user.media.nodes.forEach((d) => {
-      let cuenta = d.likes.count;
-      calculo.total += cuenta;
-      if (cuenta > conteo) {
-        calculo.mas = d.thumbnail_resources[1].src;
-      }
-    });
-    callback(calculo);
+    if (info.user.is_private) {
+      this.setState({ error: true, cuenta1: null, cuenta2: null });
+    } else {
+      const calculo = { cuenta: usuario, mas: null, total: 0 };
+      let conteo = 0;
+      info.user.media.nodes.forEach((d) => {
+        let cuenta = d.likes.count;
+        calculo.total += cuenta;
+        if (cuenta > conteo) {
+          calculo.mas = d.thumbnail_resources[1].src;
+        }
+      });
+      callback(calculo);
+    }
   }
 
   encontrarGanador (callback) {
