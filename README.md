@@ -15,7 +15,7 @@ The next thing you have to do before you can deploy is setting up a mongo databa
 * Or you can also use [mongolab](mlab.com) for free. 
 
 What you need to do now is set up ENV variables for the project before you can deplyo. This is important because this is how the project will connect to the db and how you can also set up your preferred port for the back-end server of this program. To do this step you can:
-* Manually configuring environmental variables in your OS using the terminal or any other way your OS allow you to do that.
+* Manually configuring environmental variables in your OS using the terminal or any other way your OS allow you to do so.
 * Add a file called `.env` and set the variables there.
 
 The veriables you need to add are:
