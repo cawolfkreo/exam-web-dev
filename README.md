@@ -28,7 +28,7 @@ The veriables you need to add are:
 
 ### See an Already deployed demo
 
-If you don't feel like deploying this project or preparing everythin listed on the *getting started* section, there is a deployed version of this project [here.](https://insta-fight.herokuapp.com/)
+If you don't feel like deploying this project or preparing everything listed on the *getting started* section, there is a deployed version of this project [here.](https://insta-fight.herokuapp.com/)
 
 ### Deploy Yourself
 Once you have everything ready open the terminal on the root folder where this project is downloaded in your pc and then enter on the `frontend` folder and run:
