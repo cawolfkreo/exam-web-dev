@@ -39,11 +39,10 @@ class Salida extends Component {
       const url = "https://www.instagram.com/" + this.state.ganador.cuenta;
       ganador = (
         <div>
-          <h3>El ganador es:</h3>
-          <h1>@{this.state.ganador.cuenta}
-            <a href={url} target="_blank">
-              <button className="btn btn-info">Ver perfil</button>
-            </a>
+          <h3>El ganador con {this.state.ganador.total} likes es:</h3>
+          <h1>@{this.state.ganador.cuenta} <a href={url} target="_blank">
+            <button className="btn btn-info">Ver perfil</button>
+          </a>
           </h1>
           <br/>
           <h3>La imagen encontrada del ganador con más likes:</h3>
