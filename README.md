@@ -46,7 +46,7 @@ Then the node-express server will be up and running. Once you are finish with th
 * [__Camilo Zambrano Votto__](https://github.com/cawolfkreo)
 
 ## Contributing
-If anyone wants to give me any help or ideas, you can by making new [Issues](https://github.com/cawolfkreo/exam-web-dev/issues) or a [Pull requests](https://github.com/cawolfkreo/exam-web-dev/issues).
+If anyone wants to give me any help or ideas, you can by making new [Issues](https://github.com/cawolfkreo/instaFight/issues) or a [Pull requests](https://github.com/cawolfkreo/instaFight/pulls).
 
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
