@@ -81,6 +81,7 @@ class App extends Component {
         calculo.total += cuenta;
         if (cuenta > conteo) {
           calculo.mas = d.thumbnail_resources[1].src;
+          conteo = cuenta;
         }
       });
       callback(calculo);
