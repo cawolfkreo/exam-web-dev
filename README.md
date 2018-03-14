@@ -15,7 +15,7 @@ The next thing you have to do before you can deploy is setting up a mongo databa
 * Or you can also use [mongolab](mlab.com) for free. 
 
 What you need to do now is set up ENV variables for the project before you can deplyo. This is important because this is how the project will connect to the db and how you can also set up your preferred port for the back-end server of this program. To do this step you can:
-* Manually configuring environmental variables in your OS using the terminal or any other way your OS allow you to do that.
+* Manually configuring environmental variables in your OS using the terminal or any other way your OS allow you to do so.
 * Add a file called `.env` and set the variables there.
 
 The veriables you need to add are:
@@ -28,7 +28,7 @@ The veriables you need to add are:
 
 ### See an Already deployed demo
 
-If you don't feel like deploying this project or preparing everythin listed on the *getting started* section, there is a deployed version of this project [here.](https://insta-fight.herokuapp.com/)
+If you don't feel like deploying this project or preparing everything listed on the *getting started* section, there is a deployed version of this project [here.](https://insta-fight.herokuapp.com/)
 
 ### Deploy Yourself
 Once you have everything ready open the terminal on the root folder where this project is downloaded in your pc and then enter on the `frontend` folder and run:
