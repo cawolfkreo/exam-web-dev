@@ -71,16 +71,19 @@ class App extends Component {
   }
 
   darFotosUsuario (usuario, info, callback) {
-    if (info.user.is_private) {
+    const user = info.graphql.user; //takes the data from the new instagram graphql created JSON
+    if (user.is_private) {
       this.setState({ error: true, cuenta1: null, cuenta2: null });
     } else {
+      const media = user.edge_owner_to_timeline_media;
       const calculo = { cuenta: usuario, mas: null, total: 0 };
       let conteo = 0;
-      info.user.media.nodes.forEach((d) => {
-        let cuenta = d.likes.count;
+      media.edges.forEach((d) => {
+        const imagenGraphQl = d.node;
+        const cuenta = imagenGraphQl.edge_liked_by.count;
         calculo.total += cuenta;
         if (cuenta > conteo) {
-          calculo.mas = d.thumbnail_resources[1].src;
+          calculo.mas = imagenGraphQl.thumbnail_resources[2].src;
           conteo = cuenta;
         }
       });
