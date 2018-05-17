@@ -1,6 +1,6 @@
 # Insta Fight
 ## Description
-This is a web application to compare two accounts on instagram in this way: You give the two accounts and the app will take the last picture uploads from both and respond with the account with the most likes. **you also get** the picture with most likes on the winner account based on the last picture uploads it fetch. **Lastly**, there is also a button that takes you to the profile of the winner in case you want to follow the account :tada:
+This is a web application to compare two accounts on instagram in this way: You give the two accounts and the app will take the last picture uploads from both and respond with the account with the most likes. **you also get** the picture with most likes on the winner account based on the last picture uploads it fetch. **Lastly**, there is also a button that takes you to the profile of the winner in case you want to follow the account, two creative things I added, if I might say :tada:
 
 ## Motivation
 This is a project for a [web development class](http://johnguerra.co/classes/webDevelopment_spring_2018/) in [Uniandes](https://www.uniandes.edu.co). The objective is to make a quick project using **node, MongoDB, ReactJS and I also used Bootstrap**.
